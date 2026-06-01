@@ -1,0 +1,41 @@
+name: Sync Prices - Hourly
+
+on:
+  schedule:
+    # Toutes les heures à la minute 0
+    - cron: '0 * * * *'
+  workflow_dispatch:  # Permet d'exécuter manuellement depuis GitHub
+
+jobs:
+  sync-prices:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+      
+      - name: Install Supabase CLI
+        run: npm install -g supabase
+      
+      - name: Invoke sync-prices Edge Function
+        run: |
+          # Appelle l'Edge Function via curl
+          curl -X POST \
+            "https://glofwrhgzxqttshvxhcw.supabase.co/functions/v1/sync-prices" \
+            -H "Authorization: Bearer ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}" \
+            -H "Content-Type: application/json" \
+            -d '{}'
+      
+      - name: Log sync result
+        run: echo "✅ Sync prices executed successfully at $(date)"
+      
+      - name: Notify on failure
+        if: failure()
+        run: |
+          echo "❌ Sync prices failed!"
+          exit 1
