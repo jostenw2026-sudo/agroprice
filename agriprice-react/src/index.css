@@ -1,0 +1,164 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  @apply m-0 p-0;
+}
+
+html {
+  @apply scroll-smooth;
+}
+
+body {
+  @apply bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-slate-100 font-sans;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+/* Glassmorphism components */
+.glass {
+  @apply bg-white/10 backdrop-blur-lg border border-white/20 rounded-2xl;
+}
+
+.glass-dark {
+  @apply bg-slate-800/40 backdrop-blur-md border border-slate-700/30 rounded-xl;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  @apply w-2 h-2;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-slate-900;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-slate-600 rounded-full hover:bg-slate-500;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { @apply opacity-0 translate-y-4; }
+  to { @apply opacity-100 translate-y-0; }
+}
+
+@keyframes slideInLeft {
+  from { @apply opacity-0 -translate-x-4; }
+  to { @apply opacity-100 translate-x-0; }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.3s ease-out;
+}
+
+.animate-slide-in-left {
+  animation: slideInLeft 0.3s ease-out;
+}
+
+/* Form inputs */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"],
+textarea,
+select {
+  @apply w-full px-4 py-2.5 rounded-lg bg-slate-900/50 border border-slate-700 text-slate-100 placeholder-slate-500;
+  @apply focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent;
+  @apply transition duration-200;
+}
+
+/* Buttons */
+.btn {
+  @apply px-4 py-2.5 rounded-lg font-medium transition duration-200;
+  @apply focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-slate-900;
+}
+
+.btn-primary {
+  @apply bg-emerald-600 text-white hover:bg-emerald-700 focus:ring-emerald-500;
+}
+
+.btn-secondary {
+  @apply bg-slate-700 text-white hover:bg-slate-600 focus:ring-slate-500;
+}
+
+.btn-ghost {
+  @apply text-slate-300 hover:bg-slate-800 focus:ring-slate-500;
+}
+
+/* Cards */
+.card {
+  @apply glass p-6 rounded-2xl;
+}
+
+.card-dark {
+  @apply glass-dark p-4 rounded-xl;
+}
+
+/* Typography */
+h1 {
+  @apply text-4xl font-bold mb-4;
+}
+
+h2 {
+  @apply text-2xl font-bold mb-3;
+}
+
+h3 {
+  @apply text-lg font-semibold mb-2;
+}
+
+/* Tables */
+.table-responsive {
+  @apply overflow-x-auto;
+}
+
+table {
+  @apply w-full text-sm;
+}
+
+th {
+  @apply bg-slate-800/50 px-4 py-3 text-left font-semibold border-b border-slate-700;
+}
+
+td {
+  @apply px-4 py-3 border-b border-slate-700/50;
+}
+
+/* Badges */
+.badge {
+  @apply inline-flex items-center px-3 py-1 rounded-full text-xs font-medium;
+}
+
+.badge-green {
+  @apply bg-emerald-500/20 text-emerald-300;
+}
+
+.badge-red {
+  @apply bg-red-500/20 text-red-300;
+}
+
+.badge-blue {
+  @apply bg-blue-500/20 text-blue-300;
+}
+
+/* Alerts */
+.alert {
+  @apply p-4 rounded-lg border;
+}
+
+.alert-success {
+  @apply bg-emerald-500/10 border-emerald-500/50 text-emerald-300;
+}
+
+.alert-error {
+  @apply bg-red-500/10 border-red-500/50 text-red-300;
+}
+
+.alert-warning {
+  @apply bg-amber-500/10 border-amber-500/50 text-amber-300;
+}
+
+.alert-info {
+  @apply bg-blue-500/10 border-blue-500/50 text-blue-300;
+}
